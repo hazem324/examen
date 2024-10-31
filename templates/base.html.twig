@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <table border = "3">
+    <tr>
+    <th>Name</th>
+    <th>Prenom</th>
+    <th>Age</th>
+    <th>status</th>
+    <th>UpDate/Delete</th>
+    </tr>
+
+{% if patients is empty %}
+
+<tr>
+    
+    <th colspan = "5">There is no patients</th> 
+    </tr>
+
+{% else %}
+{% for patient in patients %}
+    <tr>
+    
+    <th>{{patient.name}}</th>
+    <th>{{patient.prenom}}</th>
+    <th>{{patient.age}}</th>
+    <th>{{patient.status ? 'oui' : 'non'}}</th>
+    <th>
+    <a href="  {{path('app_updatepatient', {'id': patient.id})}} ">UpDate</a>
+    <a href="   {{path('app_deletecabinet', {'id': patient.id})}}  ">Delete</a>
+    </th>
+    </tr>
+    {% endfor %}
+    {% endif %}
+    </table>
+</body>
+</html>

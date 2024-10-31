@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+
+<div style="margin: 20px; padding: 20px;">
+        {{ form_start(search) }}
+    <label>{{ form_label(search.max) }}</label>
+    {{ form_widget(search.max) }}
+
+    <label>{{ form_label(search.min) }}</label>
+    {{ form_widget(search.min) }}
+{{ form_end(search) }}
+    </div>
+
+
+<table border ="3">
+ <tr> 
+ <th>Name</th>
+ <th>Numbre patient</th>
+ <th>upDate</th>
+ <th>delete</th>
+ </tr>
+ 
+{% if cabinets is not empty %}
+
+{% for cabinet in cabinets %}
+
+ <tr> 
+ <th>{{cabinet.name}}</th>
+ <th>{{cabinet.nbrPatient}}</th>
+ <th><a href="{{path('app_updatecabinet',{'id':cabinet.id})}}">upDate</a></th>
+  <th><a href="{{path('app_deletecabinet', {'id' : cabinet.id})}}">Delete</a></th>
+ </tr>
+ {% endfor %}
+
+ {% else %}
+ <td colspan="4">No cabinets available</td>
+ {% endif %}
+</table>
+</body>
+</html>
